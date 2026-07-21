@@ -1,0 +1,43 @@
+====================================
+      CURRENCY CONVERTER
+====================================
+
+1. Display Available Currencies
+2. Convert Currency
+3. View Exchange Rate
+4. Undo Last Rate View
+5. Show Rate History
+6. Exit
+
+Enter your choice: 2
+
+Enter Source Currency: USD
+Enter Target Currency: INR
+Enter Amount: 100
+
+100.00 USD = 8300.00 INR
+
+====================================
+
+Enter your choice: 3
+
+Enter Source Currency: USD
+Enter Target Currency: EUR
+
+Exchange Rate
+----------------------
+1 USD = 0.8973 EUR
+
+====================================
+
+Enter your choice: 5
+
+Rate History
+----------------------
+1 USD = 0.8973 EUR
+
+====================================
+
+Enter your choice: 4
+
+Removed: 1 USD = 0.8973 EUR
