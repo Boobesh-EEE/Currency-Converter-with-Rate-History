@@ -31,7 +31,17 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println("Convert Currency - Coming Soon");
+
+                    System.out.print("Enter Source Currency: ");
+                    String from = scanner.next();
+
+                    System.out.print("Enter Target Currency: ");
+                    String to = scanner.next();
+
+                    System.out.print("Enter Amount: ");
+                    double amount = scanner.nextDouble();
+
+                    service.convertCurrency(from, to, amount);
                     break;
 
                 case 3:
