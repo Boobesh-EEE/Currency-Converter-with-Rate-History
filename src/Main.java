@@ -45,23 +45,34 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("View Exchange Rate - Coming Soon");
+
+                    System.out.print("Enter Source Currency: ");
+                    String source = scanner.next();
+
+                    System.out.print("Enter Target Currency: ");
+                    String target = scanner.next();
+
+                    service.viewRate(source, target);
                     break;
 
                 case 4:
-                    System.out.println("Undo Last Rate View - Coming Soon");
+
+                    service.undoLastRate();
                     break;
 
                 case 5:
-                    System.out.println("Show Rate History - Coming Soon");
+
+                    service.showRateHistory();
                     break;
 
                 case 6:
-                    System.out.println("Thank you for using Currency Converter.");
+
+                    System.out.println("\nThank you for using Currency Converter!");
                     break;
 
                 default:
-                    System.out.println("Invalid Choice.");
+
+                    System.out.println("\nInvalid choice! Please try again.");
             }
 
         } while (choice != 6);

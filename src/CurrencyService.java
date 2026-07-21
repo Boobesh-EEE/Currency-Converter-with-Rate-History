@@ -3,9 +3,11 @@ import java.util.HashMap;
 public class CurrencyService {
 
     private HashMap<String, Currency> currencies;
+    private RateHistory rateHistory;
 
     public CurrencyService() {
         currencies = new HashMap<>();
+        rateHistory = new RateHistory();
         loadRates();
     }
 
@@ -21,10 +23,10 @@ public class CurrencyService {
         currencies.put("INR", new Currency("INR", "Indian Rupee", 1.0));
     }
 
-    // Display all available currencies
+    // Display available currencies
     public void displayCurrencies() {
 
-        System.out.println("\nAvailable Currencies:");
+        System.out.println("\nAvailable Currencies");
         System.out.println("----------------------");
 
         for (Currency currency : currencies.values()) {
@@ -35,28 +37,60 @@ public class CurrencyService {
         }
     }
 
-    // Convert one currency to another
+    // Convert currency
     public void convertCurrency(String from, String to, double amount) {
 
         from = from.toUpperCase();
         to = to.toUpperCase();
 
         if (!currencies.containsKey(from) || !currencies.containsKey(to)) {
-            System.out.println("\nInvalid Currency Code!");
+            System.out.println("Invalid Currency Code!");
             return;
         }
 
         double fromRate = currencies.get(from).getRate();
         double toRate = currencies.get(to).getRate();
 
-        // Convert through INR as the base currency
         double amountInINR = amount * fromRate;
         double convertedAmount = amountInINR / toRate;
 
-        System.out.println("\nConversion Result");
-        System.out.println("----------------------");
-        System.out.printf("%.2f %s = %.2f %s%n",
+        System.out.printf("\n%.2f %s = %.2f %s%n",
                 amount, from, convertedAmount, to);
     }
 
+    // View exchange rate
+    public void viewRate(String from, String to) {
+
+        from = from.toUpperCase();
+        to = to.toUpperCase();
+
+        if (!currencies.containsKey(from) || !currencies.containsKey(to)) {
+            System.out.println("Invalid Currency Code!");
+            return;
+        }
+
+        double fromRate = currencies.get(from).getRate();
+        double toRate = currencies.get(to).getRate();
+
+        double exchangeRate = fromRate / toRate;
+
+        String record = "1 " + from + " = " +
+                String.format("%.4f", exchangeRate) + " " + to;
+
+        System.out.println("\nExchange Rate");
+        System.out.println("----------------------");
+        System.out.println(record);
+
+        rateHistory.pushRate(record);
+    }
+
+    // Undo last viewed rate
+    public void undoLastRate() {
+        rateHistory.undoRate();
+    }
+
+    // Show history
+    public void showRateHistory() {
+        rateHistory.showHistory();
+    }
 }
